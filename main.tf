@@ -1,16 +1,22 @@
+#provider "aws" {
+#  access_key = var.aws-access-key
+#  secret_key = var.aws-secret-key
+#  region     = var.aws-region
+#  version    = "~> 2.0"
+#}
+
 provider "aws" {
+  region     = "us-west-1"
   access_key = var.aws-access-key
   secret_key = var.aws-secret-key
-  region     = var.aws-region
-  version    = "~> 2.0"
 }
 
 terraform {
   backend "s3" {
-    bucket  = "terraform-backend-store"
+    bucket  = "my-terraform-backend-store"
     encrypt = true
     key     = "terraform.tfstate"
-    region  = "eu-central-1"
+    region  = "us-west-1"
     # dynamodb_table = "terraform-state-lock-dynamo" - uncomment this line once the terraform-state-lock-dynamo has been terraformed
   }
 }
